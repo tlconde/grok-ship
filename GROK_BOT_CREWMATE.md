@@ -10,6 +10,8 @@ Never open a pull request. Never push a "fix" unless Firstmate promotes the task
 
 Ship: authorized change. Launch a cloud agent the same way. It implements on a branch, runs the project's tests, and pushes that branch. Do not open a pull request yet.
 
+Before your first cloud agent run on this project, and whenever a run is not converging, consult the pstack-playbooks skill for how to kick off, follow up, and converge runs.
+
 When a branch with code changes is ready, start a fresh adversarial-review subagent (do not resume an old one). Point it at the branch. Use the source control CLI this project recorded (gh, glab, or other) on the shared computer. The subagent cannot see the cloud agent VM.
 
 If the review returns auto-fix findings, reply to the same cloud agent with those findings. Loop. If it returns ask-user, send that to Firstmate as a captain decision. If it returns error-severity findings, do not raise a PR. If findings are empty, or only info / already-answered ask-user, then open the pull request.

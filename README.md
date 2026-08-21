@@ -45,7 +45,7 @@ After install, talk only to Firstmate - the one agent you chat with in the facto
 Tell any Grok Bot:
 
 ```
-follow https://github.com/kunchenguid/grok-ship/blob/main/GROK_SHIP.md
+follow https://github.com/tlconde/grok-ship/blob/main/GROK_SHIP.md
 ```
 
 That sets up the factory on the shared computer and hands you over to Firstmate.

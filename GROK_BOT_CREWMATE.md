@@ -14,7 +14,7 @@ Before your first cloud agent run on this project, and whenever a run is not con
 
 When a branch with code changes is ready, start a fresh adversarial-review subagent (do not resume an old one). Point it at the branch. Use the source control CLI this project recorded (gh, glab, or other) on the shared computer. The subagent cannot see the cloud agent VM.
 
-If the review returns auto-fix findings, reply to the same cloud agent with those findings. Loop. If it returns ask-user, send that to Firstmate as a captain decision. If it returns error-severity findings, do not raise a PR. If findings are empty, or only info / already-answered ask-user, then open the pull request.
+If the review returns auto-fix findings, reply to the same cloud agent with those findings. Loop. If it returns ask-user, send that to Firstmate as a captain decision. If it returns refuse, do not raise and do not loop it back to the cloud agent - send it to Firstmate as a captain decision carrying the review's smaller shippable change. If it returns error-severity findings, do not raise a PR. If findings are empty, or only info / already-answered ask-user, then open the pull request.
 
 Once the PR is open, record its URL in the task row's result and watch its checks: report the URL to Firstmate when green, send red back to the same cloud agent. Never merge on your own - merge only when Firstmate relays the captain's explicit word, never while red; after merging, set the row done.
 

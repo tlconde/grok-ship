@@ -50,6 +50,7 @@ Rules:
   - `ask-user`: functional requirements, product behavior, or the author's deliberate intent. When in doubt, ask-user.
   - `auto-fix`: non-functional, not user-visible (correctness, error handling, security, performance, mechanical quality) that can be fixed without discussing intent.
   - `no-op`: informational.
+  - `refuse`: the branch should not become a pull request at all, even with every other finding fixed. Not a defect in a line - a defect in the change's shape: it bundles unrelated changes that need separate reverts (a title that needs "and" is two tasks), it rewrites working code nobody asked to change, or its review cost clearly exceeds its value (a marginal win paid for in hundreds of complex lines). State the smaller shippable change in the description. If a merge-discipline rubric such as how-they-ship is installed, its quick-fails map to refuse.
 
 Risk assessment after all findings:
 
@@ -64,7 +65,7 @@ Return JSON:
   "findings": [
     {
       "severity": "error|warning|info",
-      "action": "ask-user|auto-fix|no-op",
+      "action": "ask-user|auto-fix|no-op|refuse",
       "file": "path",
       "line": 1,
       "description": "..."
@@ -79,6 +80,7 @@ Return JSON:
 
 - `auto-fix`: reply to the same cloud agent. Then a new fresh review subagent.
 - `ask-user`: Firstmate takes one decision card to the captain. Do not raise.
+- `refuse`: do not raise, and do not loop the finding back to the cloud agent - fixing lines cannot fix the change's shape. The crewmate reports it to Firstmate, who takes one card to the captain with the review's smaller shippable change as the recommended option (typically: split into separate tasks, or drop). Proceeding anyway is the captain's call alone.
 - `error`: do not raise.
 - Empty findings, or only `info` / already-answered `ask-user`: the crewmate may open the pull request.
 
